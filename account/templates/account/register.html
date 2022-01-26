@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1 class="text-success text-center">Register with e-Chorder</h1>
+<div class="card bg-dark text-white">
+    <img src="{% static 'images/deliver.jpg' %}" class="card-img" alt="...">
+    <div class="card-img-overlay">
+        <h5 class="card-title text-center">Register</h5>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3 row">
+                <label for="exampleFormControlInput1" class="col-md-2 offset-md-2 form-label">Email address:</label>
+                <div class="col-md-5">
+                    <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="validationDefault01" class="col-md-2 offset-md-2 form-label">Username:</label>
+                <div class="col-md-5">
+                    <input name="username" type="text" class="form-control" id="validationDefault01" required>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-md-2 offset-md-2 col-form-label">Password:</label>
+                <div class="col-md-5">
+                    <input name="password1" type="password" class="form-control" id="inputPassword" required>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="inputPassword2" class="col-md-2 offset-md-2 col-form-label">Confirm Password:</label>
+                <div class="col-md-5">
+                    <input name="password2" type="password" class="form-control" id="inputPassword2" required>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="inputSelect" class="col-md-2 offset-md-2 col-form-label">Choose a category</label>
+                <div class="col-md-5">
+                    <select name="category" id="inputSelect" class="form-select" aria-label="Default select example">
+                        <option selected value="Customer">Customer</option>
+                        <option value="Restaurant Manager">Restaurant Manager</option>
+                        <option value="***">***(null)</option>
+                    </select>
+                </div>
+            </div>
+            {% for field in registration_form %}
+            <p>
+                {% for error in field.errors %}
+                    <p class="bg-warning fw-bold text-center text-danger rounded">{{ error }}</p>
+                {% endfor %}
+            </p>
+            {% endfor %}
+
+            {% if registration_form.non_field_errors %}
+                <div class="text-danger">
+                    <p class="bg-warning text-center fw-bold rounded">{{ registration_form.non_field_errors }}</p>
+                </div>
+            {% endif %}
+            <div class="my-5 row">
+                <input type="submit" class="btn btn-success col-md-2 offset-md-5" value="Register">
+            </div>
+            <!--      <div class="mb-3">-->
+            <!--        <label for="formFile" class="form-label">Default file input example</label>-->
+            <!--        <input class="form-control" type="file" id="formFile">-->
+            <!--      </div>-->
+        </form>
+
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text">Last updated 3 mins ago</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block style %}
+img.card-img {
+opacity: 0.5;
+}
+{% endblock %}

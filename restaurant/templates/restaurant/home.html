@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1 class="text-center my-4">What is e-Chorder?</h1>
+<div class="row">
+    <div class="col-md-6 px-3">
+        <p>e-Chorder is a web application that allows you to:</p>
+        <ul>
+            <li>explore different restaurants in Abuja,</li>
+            <li>look through their menus,</li>
+            <li>place an order</li>
+        </ul>
+        <p>all from the comfort of your home or where ever you are.</p>
+        <p>e-Chorder's got you. Let's help each other spread the word.</p>
+        <strong class="bg-warning">Note: Every information about the restaurants on e-Chorder is directly gotten from the respective restaurants.</strong>
+        <p>So, you're in safe hands.</p>
+        <h4>Happy ordering with e-Chorder. Let's go!</h4>
+        <h5 class="text-center">Are you new to e-Chorder?</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="float-end">
+                    <h3 class="text-center">YES</h3>
+                    <a href="{% url 'register' %}" class="btn btn-success">Register with us</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="float-start">
+                    <h3 class="text-center">NO</h3>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <img class="img-responsive" width="500px" height="auto" src="{% static 'images/cycle.jpg' %}" alt="">
+    </div>
+</div>
+
+{% endblock %}
