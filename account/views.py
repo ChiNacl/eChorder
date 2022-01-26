@@ -2,13 +2,16 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegistrationForm, AccountAuthenticationForm
+from django.contrib import messages
 
 # Create your views here.
 def register_view(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
-        return HttpResponse(f"You are already authenticated as {user.email}.")
+        messages.add_message(request, messages.WARNING, f"You are already authenticated as '{user.email}' !")
+        return render(request, "account/message_info.html")
     context = {}
+
 
     if request.POST:
         form = RegistrationForm(request.POST)
