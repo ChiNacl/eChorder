@@ -6,13 +6,15 @@
 <div class="card bg-dark text-white">
   <img src="{% static 'images/deliver.jpg' %}" class="card-img" alt="...">
   <div class="card-img-overlay">
-      {% if messages %}
-        <ul class="messages text-center">
-            {% for message in messages %}
-            <li {% if message.tags %} class="bg-danger p-3 text-{{ message.tags }}"{% endif %}><h2>{{ message }}</h2></li>
-            {% endfor %}
-        </ul>
-      {% endif %}
+      <div class="card-text">
+          {% if messages %}
+          <ul class="messages text-center">
+              {% for message in messages %}
+              <li {% if message.tags %} class="bg-danger p-3 text-{{ message.tags }}"{% endif %}><h2>{{ message }}</h2></li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+      </div>
   </div>
 </div>
 {% endblock %}
