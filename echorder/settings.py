@@ -37,6 +37,7 @@ AUTH_USER_MODEL = 'account.Account'
 INSTALLED_APPS = [
     'account',
     'restaurant',
+    'user_profile',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegistrationForm, AccountAuthenticationForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from restaurant.models import Restaurant
+
 
 # Create your views here.
 def register_view(request, *args, **kwargs):
@@ -11,7 +14,6 @@ def register_view(request, *args, **kwargs):
         messages.add_message(request, messages.WARNING, f"You are already authenticated as '{user.email}' !")
         return render(request, "account/message_info.html")
     context = {}
-
 
     if request.POST:
         form = RegistrationForm(request.POST)
@@ -35,7 +37,7 @@ def login_view(request, *args, **kwargs):
     context = {}
     user = request.user
     if user.is_authenticated:
-        return redirect('profile')
+        return redirect(f'/account/profile/{user.id}')
 
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
@@ -48,7 +50,7 @@ def login_view(request, *args, **kwargs):
                 destination = get_redirect_if_exists(request)
                 if destination:
                     return redirect(destination)
-                return redirect('profile')
+                return redirect(f'/account/profile/{user.id}')
         else:
             context['login_form'] = form
     return render(request, 'account/login.html', context)
@@ -72,5 +74,10 @@ def logout_view(request):
     return redirect('home')
 
 
-def profile(request):
-    return render(request, 'account/user_profile.html')
+@login_required(login_url='login')
+def profile(request, id):
+    restaurant = get_object_or_404(Restaurant, user=id)
+    return render(request, 'account/user_profile.html/', {'restaurant': restaurant})
+    # return render(request, 'account/user_profile.html/')
+
+

@@ -42,7 +42,7 @@
                     <input type="submit" class="btn btn-success col-md-2 offset-md-5" value="Login">
                 </div>
 
-                <div class="mt-3 row text-center bg-warning p-2">
+                <div class="mt-3 row text-center bg-warning reset p-2 d-block mx-auto rounded p-3">
                     <a href="{% url 'password_reset' %}">Reset Password</a>
                 </div>
             </div>
@@ -64,5 +64,8 @@
         background-color: #ffc107;
         list-style-type: none;
         margin: 20px auto;
+    }
+    .reset {
+        width: 500px;
     }
 {% endblock %}
