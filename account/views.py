@@ -76,8 +76,10 @@ def logout_view(request):
 
 @login_required(login_url='login')
 def profile(request, id):
-    restaurant = get_object_or_404(Restaurant, user=id)
-    return render(request, 'account/user_profile.html/', {'restaurant': restaurant})
-    # return render(request, 'account/user_profile.html/')
+    if request.user.category == 'Restaurant Manager':
+        restaurant = get_object_or_404(Restaurant, user=id)
+        return render(request, 'account/user_profile.html/', {'restaurant': restaurant})
+    else:
+        return render(request, 'account/user_profile.html/')
 
 
