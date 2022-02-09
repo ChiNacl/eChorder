@@ -16,6 +16,11 @@
 			<p class="card-text">Category: {{ user.category }}</p>
 			<p class="card-text">Email: {{ user.email }}</p>
 			{% if user.category == 'Restaurant Manager' %}
+			<h3>As a Restaurant Manager, you are required to create your restaurant so that your
+				restaurant can be discoverable to customers.
+			</h3>
+			<a href="{% url 'create_restaurant' %}" class="btn btn-primary">Create Restaurant</a>
+			
 			<p class="card-text">Restaurant Name: {{ restaurant.name }}</p>
 			<p class="card-text">Restaurant Address: {{ restaurant.address }}</p>
 			<button class="btn btn-primary">Edit Profile</button>

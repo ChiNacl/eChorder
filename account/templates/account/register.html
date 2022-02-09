@@ -7,7 +7,7 @@
     <img src="{% static 'images/deliver.jpg' %}" class="card-img" alt="...">
     <div class="card-img-overlay">
         <h5 class="card-title text-center">Register</h5>
-        <div action="" method="post">
+        <form action="" method="post">
             <div class="card-text">
                 {% csrf_token %}
                 <div class="mb-3 row">
@@ -50,14 +50,14 @@
                 {% for field in registration_form %}
                 <p>
                     {% for error in field.errors %}
-                        <p class="bg-warning fw-bold text-center text-danger rounded">{{ error }}</p>
+                        <p class="bg-warning fw-bold text-center text-danger rounded"><strong>{{ error }}</strong></p>
                     {% endfor %}
                 </p>
                 {% endfor %}
 
                 {% if registration_form.non_field_errors %}
                     <div class="text-danger">
-                        <p class="bg-warning text-center fw-bold rounded">{{ registration_form.non_field_errors }}</p>
+                        <p class="bg-warning text-center fw-bold rounded"><strong>{{ registration_form.non_field_errors }}</strong></p>
                     </div>
                 {% endif %}
                 <div class="my-5 row">

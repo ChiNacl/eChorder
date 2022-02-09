@@ -1,11 +1,16 @@
 from django.db import models
-from  django.conf import settings
+from django.conf import settings
+from django.urls import reverse
 
 # Create your models here.
 class Restaurant(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
+
+    def get_absolute_url(self):
+        return reverse("restaurant", kwargs={"pk": self.pk})
+    
 
     def __str__(self):
         return self.name

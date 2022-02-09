@@ -5,6 +5,7 @@ from .forms import RegistrationForm, AccountAuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from restaurant.models import Restaurant
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
@@ -77,8 +78,12 @@ def logout_view(request):
 @login_required(login_url='login')
 def profile(request, id):
     if request.user.category == 'Restaurant Manager':
-        restaurant = get_object_or_404(Restaurant, user=id)
-        return render(request, 'account/user_profile.html/', {'restaurant': restaurant})
+        try:
+            restaurant = Restaurant.objects.get(user=id)
+            return render(request, 'account/user_profile.html/', {'restaurant': restaurant})
+            # restaurant = get_object_or_404(Restaurant, user=id)
+        except ObjectDoesNotExist:
+            return redirect('create_restaurant')       
     else:
         return render(request, 'account/user_profile.html/')
 

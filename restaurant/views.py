@@ -27,8 +27,8 @@ class RestaurantDetailView(DetailView):
         # context['menu'] = Menu.objects.filter(restaurant=self.object)
 
 
-# class CreateRestaurant(CreateView):
-#     model = Restaurant
-#     fields = '__all__'
-#     template_name = 'restaurant/edit_profile.html'
-#     # success_url = reverse_lazy('restaurants')
+class CreateRestaurant(CreateView):
+    model = Restaurant
+    fields = ['name', 'address']
+    # template_name = 'restaurant/restaurant_form.html'
+    # success_url = reverse_lazy('restaurants')
