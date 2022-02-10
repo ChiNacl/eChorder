@@ -29,6 +29,7 @@ class RestaurantDetailView(DetailView):
 
 class CreateRestaurant(CreateView):
     model = Restaurant
-    fields = ['name', 'address']
+    form_class = RestaurantForm
+    # fields = ['name', 'address']
     # template_name = 'restaurant/restaurant_form.html'
     # success_url = reverse_lazy('restaurants')

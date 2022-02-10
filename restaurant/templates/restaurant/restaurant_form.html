@@ -6,17 +6,15 @@
 <div class="card bg-dark text-white">
     <img src="{% static 'images/deliver.jpg' %}" class="card-img" alt="...">
     <div class="card-img-overlay">
-        <h2 class="card-title text-center rounded text-primary">@{{ user.username }}</h2>
+        <h2 class="card-title text-center rounded bg-warning text-primary">@{{ user.username }}</h2>
         <img src="{{ user.profile_image.url }}" class="d-block mx-auto rounded" width="300" height="auto" alt="user profile picture">
         <div class="card-text">
-			<h3>Hey there {{ user.username }}!! You can now create your restaurant</h3>
-            <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
+			<h3 class="text-center my-3">Hey there {{ user.username }}!! You can now create your restaurant</h3>
+            <form action="" class="row" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% include 'restaurant/form-template.html' %}
-                <div class="form-group mt-3 row">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-info">Submit</button>
-                    </div>
+                <div class="my-5 row">
+                    <button type="submit" class="btn btn-success col-md-2 offset-md-5">Submit</button>
                 </div>
             </form>
         </div>
@@ -27,5 +25,8 @@
 {% block style %}
   img.card-img {
     opacity: 0.5;
+  }
+  input {
+      
   }
 {% endblock %}

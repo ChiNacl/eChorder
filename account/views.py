@@ -28,7 +28,7 @@ def register_view(request, *args, **kwargs):
             #if destination != None
             if destination:
                 return redirect(destination)
-            return redirect('home')
+            return redirect('profile')
         else:
             context['registration_form'] = form
     return render(request, 'account/register.html', context)

@@ -23,8 +23,8 @@ class Menu(models.Model):
     meal = models.CharField(max_length=255)
     ingredients = models.TextField(default='none')
     price = models.IntegerField()
-    restaurant = models.ForeignKey(
-        Restaurant, on_delete=models.CASCADE, default=1)
+    restaurant = models.OneToOneField(
+        Restaurant, on_delete=models.CASCADE)
     image = models.ImageField(
         upload_to="image_uploads/", default="image_uploads/rice-40282_1280.png")
 
