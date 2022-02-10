@@ -13,6 +13,7 @@
             <form action="" class="row" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% include 'restaurant/form-template.html' %}
+                <input type="hidden" name="hidden" id="hid" value="{{ user.id }}" />
                 <div class="my-5 row">
                     <button type="submit" class="btn btn-success col-md-2 offset-md-5">Submit</button>
                 </div>
@@ -26,7 +27,14 @@
   img.card-img {
     opacity: 0.5;
   }
-  input {
-      
-  }
+
+{% endblock %}
+
+{% block script %}
+let user_pk; 
+let hi;
+hi = document.getElementById('hid');
+user_pk = document.getElementById('userpk');
+user_pk.value = hi.value;
+user_pk.setAttribute("readonly", "true");
 {% endblock %}

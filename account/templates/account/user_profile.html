@@ -6,7 +6,7 @@
 <div class="card bg-dark text-white">
     <img src="{% static 'images/deliver.jpg' %}" class="card-img" alt="...">
     <div class="card-img-overlay">
-        <h2 class="card-title text-center rounded text-primary">@{{ user.username }}</h2>
+        <h2 class="card-title text-center bg-warning rounded text-primary">@{{ user.username }}</h2>
         <img src="{{ user.profile_image.url }}" class="d-block mx-auto rounded" width="300" height="auto" alt="user profile picture">
         <div class="card-text">
 			<h3>Hey there {{ user.username }}!! Glad to see you on your profile page</h3>
@@ -16,14 +16,13 @@
 			<p class="card-text">Category: {{ user.category }}</p>
 			<p class="card-text">Email: {{ user.email }}</p>
 			{% if user.category == 'Restaurant Manager' %}
-			<h3>As a Restaurant Manager, you are required to create your restaurant so that your
+			{% comment %} <h3>As a Restaurant Manager, you are required to create your restaurant so that your
 				restaurant can be discoverable to customers.
 			</h3>
-			<a href="{% url 'create_restaurant' %}" class="btn btn-primary">Create Restaurant</a>
+			<a href="{% url 'create_restaurant' %}" class="btn btn-primary">Create Restaurant</a> {% endcomment %}
 			
 			<p class="card-text">Restaurant Name: {{ restaurant.name }}</p>
 			<p class="card-text">Restaurant Address: {{ restaurant.address }}</p>
-			<button class="btn btn-primary">Edit Profile</button>
 			{% endif %}
 			<button class="btn btn-primary">Edit Profile</button>
 			<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>

@@ -76,10 +76,10 @@ def logout_view(request):
 
 
 @login_required(login_url='login')
-def profile(request, id):
+def profile(request, pk):
     if request.user.category == 'Restaurant Manager':
         try:
-            restaurant = Restaurant.objects.get(user=id)
+            restaurant = Restaurant.objects.get(user=pk)
             return render(request, 'account/user_profile.html/', {'restaurant': restaurant})
             # restaurant = get_object_or_404(Restaurant, user=id)
         except ObjectDoesNotExist:

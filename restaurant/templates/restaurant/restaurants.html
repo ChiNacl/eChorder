@@ -10,12 +10,13 @@
       <img src="{{ user.profile_image.url }}" class="d-block mx-auto rounded" width="300" height="auto" alt="user profile picture">
       {% for restaurant in restaurants %}
       <div class="card-text">
-            <p>{{ restaurant.name }}</p> - <small>{{ restaurant.address }}</small>
+            <a href="{% url 'restaurant' restaurant.id %}"><h4><strong>{{ restaurant.name }}</strong></h4></a>
+            <small>{{ restaurant.address }}</small>
       </div>
       {% endfor %}
 
       {% if not restaurants %}
-      <p><strong class="bg-warning">No Restaurant exists in our Database</strong></p>
+      <h2 class="my-5 text-center text-dark"><strong class="bg-warning p-3">No Restaurant exists in our Database</strong></h2>
       {% endif %}
   </div>
 </div>

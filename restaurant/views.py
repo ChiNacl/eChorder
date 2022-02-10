@@ -1,8 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.http import request
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import RestaurantForm
 from .models import Restaurant, Menu
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 
 # Create your views here.
 def home(request):
@@ -21,15 +23,18 @@ class RestaurantDetailView(DetailView):
     context_object_name = 'restaurant'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = self.object.menu_set.all()
-        return context
+        try:
+            context = super().get_context_data(**kwargs)
+            context['menu'] = self.object.menu.all()
+            return context
+        except Menu.DoesNotExist:
+            return context
+            # print(self.object.pk)
+        
         # context['menu'] = Menu.objects.filter(restaurant=self.object)
 
 
 class CreateRestaurant(CreateView):
     model = Restaurant
     form_class = RestaurantForm
-    # fields = ['name', 'address']
-    # template_name = 'restaurant/restaurant_form.html'
-    # success_url = reverse_lazy('restaurants')
+    

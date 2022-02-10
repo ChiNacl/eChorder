@@ -1,13 +1,16 @@
+from urllib.request import Request
 from django.forms import ModelForm
 from django import forms
+from django.http import request
 from .models import Restaurant, Menu
 
 
 class RestaurantForm(ModelForm):
     class Meta:
         model = Restaurant
-        fields = ['name', 'address']
+        fields = ['user', 'name', 'address']
         widgets = {
+            'user': forms.TextInput(attrs={'class': 'form-control', 'id': 'userpk'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
         }
